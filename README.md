@@ -31,19 +31,22 @@ Make sure that you have generated your [`Kubeconfig` file](https://rancher.com/d
 
 ```yml
 # serverless.yml
+org: acme
+app: todo
+name: todo-knative-build
 
-myKnativeBuildDefinition:
-  component: '@serverless/knative-build'
-  inputs:
-    # use one of the following 2 source definitions
-    gitUrl: git@acme.com:engineering/accounting-taxes.git#master # supports `git` or `https` URLs
-    bucketUrl: http://acme.s3-us-east-1.amazonaws.com/accounting-taxes # AWS S3 or Google Cloud Storage bucket
-    dockerfile: '.' # the Dockerfile located within the source code
-    context: '.' # the build context located within the source code
-    tag: latest # default is `latest`
-    registryAddress: 'https://container-registry.acme.com' # default is `'https://index.docker.io/v1'`
-    environment: # optional environment variables
-      STAGE: prod
+component: knative-build@dev
+
+inputs:
+  # use one of the following 2 source definitions
+  gitUrl: git@acme.com:engineering/accounting-taxes.git#master # supports `git` or `https` URLs
+  bucketUrl: http://acme.s3-us-east-1.amazonaws.com/accounting-taxes # AWS S3 or Google Cloud Storage bucket
+  dockerfile: '.' # the Dockerfile located within the source code
+  context: '.' # the build context located within the source code
+  tag: latest # default is `latest`
+  registryAddress: 'https://container-registry.acme.com' # default is `'https://index.docker.io/v1'`
+  environment: # optional environment variables
+    STAGE: prod
 ```
 
 ### 4. Deploy
